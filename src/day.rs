@@ -16,4 +16,10 @@ pub trait Day {
 pub enum DayError {
     #[error("Input error: {0}")]
     Input(String),
+
+    #[error("Error in aho_corasick crate: {0}")]
+    AhoCorasick(#[from] aho_corasick::BuildError),
+
+    #[error("Iterator error: {0}")]
+    Iterator(String),
 }
