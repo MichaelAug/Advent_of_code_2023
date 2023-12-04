@@ -2,9 +2,11 @@ use std::{env, fs};
 
 mod day;
 mod day_1;
+mod day_2;
 
 use day::Day;
 use day_1::Day1;
+use day_2::Day2;
 
 use crate::day::DayError;
 
@@ -28,6 +30,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     let solution = match day {
         1 => Day1.solve(&input_content),
+        2 => Day2.solve(&input_content),
         _ => Err(DayError::Input(format!("Incorrect day specified: {day}"))),
     }?;
 

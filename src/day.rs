@@ -1,3 +1,5 @@
+use std::num::ParseIntError;
+
 use thiserror::Error;
 
 pub trait Day {
@@ -22,4 +24,7 @@ pub enum DayError {
 
     #[error("Iterator error: {0}")]
     Iterator(String),
+
+    #[error("Error Parsing integer: {0}")]
+    Parsing(#[from] ParseIntError),
 }
