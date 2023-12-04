@@ -43,17 +43,26 @@ impl FromStr for Round {
     }
 }
 
+fn get_rounds(input: &str) -> Vec<Round> {
+    input
+        .lines()
+        .filter_map(|l| l.parse::<Round>().ok())
+        .collect()
+}
+
 impl Day for Day2 {
     fn part_1(&self, input: &str) -> Result<String, DayError> {
-        Ok(input
-            .lines()
-            .filter_map(|l| l.parse::<Round>().ok())
-            .filter(|r| r.red <= RED && r.green <= GREEN && r.blue <= BLUE)
+        Ok(get_rounds(input)
+            .iter()
+            .filter(|&r| r.red <= RED && r.green <= GREEN && r.blue <= BLUE)
             .fold(0, |acc, r| acc + r.id)
             .to_string())
     }
 
     fn part_2(&self, input: &str) -> Result<String, DayError> {
-        Ok(String::from(""))
+        Ok(get_rounds(input)
+            .iter()
+            .fold(0, |acc, r| acc + r.red * r.green * r.blue)
+            .to_string())
     }
 }
